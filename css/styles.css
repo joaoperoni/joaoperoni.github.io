@@ -1,9 +1,10 @@
 /* Global Styles */
 :root {
-    --primary-color: #2196f3;
-    --secondary-color: #1976d2;
-    --text-color: #333;
-    --background-color: #fff;
+    --primary-color: #ff6b6b;
+    --secondary-color: #ff8e53;
+    --text-color: #e0e0e0;
+    --background-color: #1a1a1a;
+    --card-background: #2a2a2a;
     --section-padding: 80px 0;
 }
 
@@ -17,14 +18,15 @@ body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
+    background-color: var(--background-color);
 }
 
 /* Header & Navigation */
 .header {
     position: fixed;
     width: 100%;
-    background-color: var(--background-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: rgba(26, 26, 26, 0.95);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 1000;
 }
 
@@ -62,12 +64,12 @@ body {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(45deg, #f3f3f3 0%, #fff 100%);
+    background: linear-gradient(45deg, #1a1a1a 0%, #2a2a2a 100%);
     padding-top: 60px;
 }
 
@@ -75,12 +77,14 @@ body {
     font-size: 3.5rem;
     margin-bottom: 1rem;
     color: var(--primary-color);
+    font-style: bold;
 }
 
 .subtitle {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
     color: var(--text-color);
+    font-style: bold;
 }
 
 .motto {
@@ -88,6 +92,12 @@ body {
     margin-bottom: 2rem;
     color: var(--secondary-color);
     font-style: italic;
+}
+
+.text {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
 }
 
 .cta-button {
@@ -130,8 +140,33 @@ h2 {
     max-width: 600px;
 }
 
-/* Projects Section */
-.projects-grid {
+/* Project Boxes */
+.project-box {
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.project-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(255,107,107,0.2);
+}
+
+.project-box h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.project-box .description {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
@@ -194,10 +229,11 @@ h2 {
 }
 
 .skill-category {
-    background: #f8f9fa;
+    background: var(--card-background);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .skill-category h3 {
@@ -232,6 +268,9 @@ h2 {
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 1rem;
+    background: var(--card-background);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .contact-info {
@@ -248,27 +287,64 @@ h2 {
 }
 
 .social-links {
-    margin-top: 1rem;
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .social-links a {
-    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     color: var(--primary-color);
-    font-weight: 500;
-    transition: color 0.3s ease;
+    text-decoration: none;
+    font-size: 1.1rem;
 }
 
 .social-links a:hover {
     color: var(--secondary-color);
 }
 
+.social-links i {
+    font-size: 1.5rem;
+}
+
+#contact-form input,
+#contact-form textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-color);
+    padding: 1rem;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#contact-form input::placeholder,
+#contact-form textarea::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+#contact-form button {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#contact-form button:hover {
+    background: var(--secondary-color);
+}
+
 /* Footer */
 footer {
     text-align: center;
     padding: 2rem;
-    background-color: #f5f5f5;
+    background-color: #151515;
+    color: var(--text-color);
 }
 
 /* Responsive Design */
