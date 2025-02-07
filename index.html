@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>João Peroni - Portfolio</title>
+    <title>João V. Peroni - Portfolio</title>
     <link rel="stylesheet" href="css/styles.css">
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Material-UI -->
     <script src="https://unpkg.com/@mui/material@latest/umd/material-ui.development.js"></script>
 </head>
 <body>
     <header class="header">
         <nav class="nav">
-            <div class="logo">JP</div>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-microchip"></i>
+                    <i class="fas fa-code"></i>
+                </div>
+            </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#skills">Competence Map</a></li>
+                <li><a href="#contact">Get in Touch</a></li>
+                <li class="theme-switch">
+                    <button id="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
             </ul>
         </nav>
     </header>
@@ -31,62 +40,172 @@
     <main>
         <section id="home" class="hero">
             <div class="hero-content">
-                <h1>João Victor Peroni</h1>
-                <p class="subtitle">Embedded Software Engineer</p>
-                <p class="motto">"Make it Work, Make it Right, Make it Fast: Delivering Efficient and Innovative Embedded Solutions."</p>
-                <p class="text">Results-driven Embedded Software Engineer with over 5 years of experience in high-performance applications</p>
-                <p class="text">I specialize in creating robust, scalable solutions from the ground up—spanning rapid prototyping, hardware design, software development, deployment, and ongoing maintenance.</p>
-                <p class="text">As a lifelong learner, I am passionate about leveraging technology to optimize processes and enhance lives.</p>
-                <p class="text">I thrive on tackling complex challenges with cutting-edge tools and agile methodologies, consistently delivering high-quality, high-performance solutions that exceed expectations.</p>
-                <p class="text">Driven by innovation and efficiency, I take pride in transforming ideas into impactful, real-world systems that push the boundaries of what’s possible.</p>
-                <a href="#contact" class="cta-button">Get in Touch</a>
+                <h1>Bringing embedded systems to life</h1>
+                <p class="subtitle">Connecting Devices, Data, and People through Innovation</p>
             </div>
         </section>
         <section id="projects" class="projects">
-            <h2>Projects</h2>
+            <h2>Projects I shaped into reality</h2>
             <div class="project-grid">
                 <div class="project-box">
-                    <h3>Project Title</h3>
-                    <p class="description">Add your project description here. Describe the technologies used, challenges overcome, and the impact of your solution.</p>
+                    <h3>Virtual Nature</h3>
+                    <p class="description">A robust LPWAN IoT environmental monitoring system. </p>
+                        <p class="description">Developed and Integrated hardware, firmware and software for seamless real-time data analysis and visualization, delivering actionable 
+                        insights for environmental monitoring.</p>
+
+                    <div class="project-footer">
+                        <div class="project-skills">
+                            <span class="skill-tag">IoT</span>
+                            <span class="skill-tag">LoRaWAN</span>
+                            <span class="skill-tag">Embedded C</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Gateway Development</span>
+                            <span class="skill-tag">PCB Design</span>
+                        </div>
+
+                        <a href="https://braganca.cienciaviva.pt/2717/" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="project-box">
-                    <h3>Project Title</h3>
-                    <p class="description">Add your project description here. Describe the technologies used, challenges overcome, and the impact of your solution.</p>
+                    <h3>DOSEA - Smart Medication Label</h3>
+                    <p class="description">A BLE smart-label and with a mobile app to streamline medication management. 
+                        Tracking medication intake, sending reminders, and improving medication adherence for better treatment outcomes.</p>
+                    <div class="project-footer">
+                        <div class="project-skills">
+                            <span class="skill-tag">BLE</span>
+                            <span class="skill-tag">Embedded C</span>
+                            <span class="skill-tag">Mobile Development</span>
+                            <span class="skill-tag">Medical IoT</span>
+                            <span class="skill-tag">Analog/Digital design</span>
+                        </div>
+                        <a href="https://centi.pt/en/project/dosea" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="project-box">
-                    <h3>Project Title</h3>
-                    <p class="description">Add your project description here. Describe the technologies used, challenges overcome, and the impact of your solution.</p>
+                    <h3>Smart Surfboard for Giant Waves</h3>
+                    <p class="description">A smart telemetry system integrated in a Surfboard tailored for giant waves.</p>
+                    <p class="description">With integrated analog data acquisition and RF communication, the device enhances the user experience by enabling data collection and real-time insights.</p>
+                    <div class="project-footer">
+                        <div class="project-skills">
+                            <span class="skill-tag">LoRa</span>
+
+
+                            <span class="skill-tag">Embedded C</span>
+                            <span class="skill-tag">Analog Design</span>
+                            <span class="skill-tag">PCB Layout</span>
+                            <span class="skill-tag">Prototyping</span>
+                            <span class="skill-tag">Software Architecture</span>
+                        </div>
+
+                        <a href="https://www.riedel.net/fileadmin/user_upload/800-downloads/01-Catalog-Update/Update_28_IBC.pdf" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
                 </div>
                 <div class="project-box">
-                    <h3>Project Title</h3>
-                    <p class="description">Add your project description here. Describe the technologies used, challenges overcome, and the impact of your solution.</p>
+                    <h3>Autbus</h3>
+                    <p class="description">Yocto-based embedded Linux images for automotive SoCs.</p>
+                    <p class="description">Led the integration of ROS2-based ADAS applications with Radar and LiDAR ROS2 drivers, 
+                    enhancing performance for an autonomous self-driving bus.</p>
+                    <div class="project-footer">
+
+                        <div class="project-skills">
+                            <span class="skill-tag">Yocto</span>
+                            <span class="skill-tag">GDB/GDBServer</span>
+                            <span class="skill-tag">ROS2</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">ADAS</span>
+                            <span class="skill-tag">Autonomous Driving</span>
+                            <span class="skill-tag">LiDAR/Radar</span>
+                        </div>
+                        <a href="https://roding-research.avl-functions.com/en/funded-projects/autbus-en/" class="project-link" target="_blank">
+
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                                <div class="project-box">
+                    <h3>Xelbot</h3>
+                    <p class="description">A multi-agent mobile robotics system for industrial automation.</p> 
+                        <p class="description">Developed seamless data exchange between robotic components and gateways, firmware over-the-air updates, 
+                        line-following, motor control and obstacle detection/avoidance, through embedded C design patterns.</p>
+                    <div class="project-footer">
+
+                        <div class="project-skills">
+                            <span class="skill-tag">Robotics</span>
+                            <span class="skill-tag">Embedded C</span>
+                            <span class="skill-tag">RTOS</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Sensor Integration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-box">
+                    <h3>CNN HW acceleration Benchmarking for Automotive SoCs</h3>
+                    <p class="description">Led the benchmarking efforts of HW acceleration for CNNs in automotive SoCs.
+                        <p class="description">Trained and optimized AI models running on C++ for benchmarking inference time and CPU load. </p>
+                        <p class="description">Developed Yocto embedded Linux images to enable HW acceleration and reduced inference time by 750%.</p>
+                    <div class="project-footer">
+                        <div class="project-skills">
+
+                            <span class="skill-tag">TensorFlow/Keras</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Yocto</span>
+                            <span class="skill-tag">Embedded AI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-box">
+                    <h3>EV BMS</h3>
+                    <p class="description">Developed Complex Device Drivers for Electric Vehicle BMS within an AUTOSAR classic framework.</p>
+                    <p class="description">Developed IL and MCAL configurations, ensuring robust interoperability, performance and safety.</p>
+                    <div class="project-footer">
+                        <div class="project-skills">
+
+                            <span class="skill-tag">AUTOSAR</span>
+                            <span class="skill-tag">Embedded C</span>
+                            <span class="skill-tag">CAN</span>
+                            <span class="skill-tag">Automotive</span>
+                            <span class="skill-tag">MISRA C</span>
+                            <span class="skill-tag">Lauterbach Trace32</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="skills" class="skills">
-            <h2>Skills</h2>
+            <h2>Competence Map</h2>
             <div class="skills-container">
                 <div class="skill-category">
                     <h3>Embedded Software Development</h3>
                     <ul>
-                        <li>C/C++</li>
+                        <li>C/C++ and RTOS</li>
+                        <li>Python / Bash Scripting</li>
+                        <li>CI / CD</li>
                         <li>Embedded Linux (Yocto)</li>
                         <li>ROS2 / MQTT</li>
                         <li>Hardware Prototyping</li>
                         <li>HW/SW Debugging</li>
-                        <li>Wired/Wireless Communication Protocols</li>
                     </ul>
                 </div>
                 <div class="skill-category">
                     <h3>AI / Machine Learning</h3>
                     <ul>
-                        <li>Python</li>
-                        <li>TensorFlow/Keras</li>
-                        <li>PyTorch</li>
+                        <li>Python Numpy / Pandas / Matplotlib</li>
+                        <li>TensorFlow / Keras / PyTorch</li>
+                        <li>Model optimization and fine-tuning</li>
                         <li>OpenCV</li>
                         <li>Docker</li>
-                        <li>Computer Vision</li>
                         <li>Embedded AI</li>
                         <li>Hardware Accelerators</li>
                     </ul>
@@ -95,22 +214,25 @@
                     <h3>Management</h3>
                     <ul>
                         <li>Agile (SCRUM)</li>
-                        <li>KANBAN</li>
-                        <li>Lean Six-Sigma</li>
-                        <li>5S</li>
-                        <li>Quality tools</li>
+                        <li>TDD</li>
+                        <li>Code Reviews & Pair Programming</li>
+                        <li>Version Control (Git / Gitflow)</li>
+                        <li>Team Management</li> 
+                        <li>User Story Mapping</li> 
                     </ul>
                 </div>
             </div>
+
         </section>
 
         <section id="contact" class="contact">
-            <h2>Contact Me</h2>
+            <h2>Get in Touch</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <p>📍 Porto, Portugal</p>
+                    <p><i class="fas fa-user-tie"></i> João Víctor Peroni - Embedded Software Engineer</p>
                     <p>📧 jvperoniutfpr@gmail.com</p>
                     <p>📱 +351 918106512</p>
+                    <p>📍 Porto, Portugal</p>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/in/joão-victor-peroni-de-almeida-3a6419151" target="_blank">
                             <i class="fab fa-linkedin"></i>
@@ -122,18 +244,12 @@
                         </a>
                     </div>
                 </div>
-                <form id="contact-form">
-                    <input type="text" placeholder="Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea placeholder="Message" required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 João Peroni. All rights reserved.</p>
+        <p>&copy; 2025 João Victor Peroni. All rights reserved.</p>
     </footer>
 
     <script src="js/main.js"></script>

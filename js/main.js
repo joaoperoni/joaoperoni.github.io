@@ -71,4 +71,43 @@ const observer = new IntersectionObserver((entries) => {
 // Observe all sections
 document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
+});
+
+// Theme Switcher
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const icon = themeToggle.querySelector('i');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    // Check for saved theme preference or use system preference
+    const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+    
+    // Function to update theme
+    const updateTheme = (theme) => {
+        document.body.className = theme;
+        localStorage.setItem('theme', theme);
+        
+        // Update icon
+        if (theme === 'light') {
+            icon.className = 'fas fa-moon';
+        } else {
+            icon.className = 'fas fa-sun';
+        }
+    };
+    
+    // Set initial theme
+    updateTheme(currentTheme);
+    
+    // Theme toggle click handler
+    themeToggle.addEventListener('click', () => {
+        const newTheme = document.body.className === 'light' ? 'dark' : 'light';
+        updateTheme(newTheme);
+    });
+    
+    // Listen for system theme changes
+    prefersDarkScheme.addListener((e) => {
+        if (!localStorage.getItem('theme')) {
+            updateTheme(e.matches ? 'dark' : 'light');
+        }
+    });
 }); 
