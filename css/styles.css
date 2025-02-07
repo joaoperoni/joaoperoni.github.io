@@ -1225,4 +1225,73 @@ section {
 
 .is-mobile.light .project-box.touch-hover .skill-tag {
     background: rgba(37, 99, 235, 0.15);
+}
+
+/* Project and Skills Grid Mobile Adjustments */
+@media (max-width: 768px) {
+    .project-grid,
+    .skills-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 0 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .project-box,
+    .skill-category {
+        margin-bottom: 1rem;
+        min-height: auto;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Ensure boxes don't get cut off */
+    .project-box.touch-hover,
+    .skill-category.touch-hover {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+    /* Add padding to container to prevent edge touching */
+    .projects,
+    .skills {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-bottom: 3rem;
+    }
+
+    /* Ensure content is properly spaced */
+    .project-box .description {
+        margin-bottom: 1.5rem;
+    }
+
+    .project-footer {
+        margin-top: 1.5rem;
+    }
+
+    .skill-category ul {
+        margin-bottom: 1rem;
+    }
+
+    /* Adjust spacing for hover effects */
+    .is-mobile .project-box.touch-hover,
+    .is-mobile .skill-category.touch-hover {
+        transform: translateY(-4px) !important;
+        margin-bottom: 12px;
+    }
+}
+
+/* Small phones additional adjustments */
+@media (max-width: 380px) {
+    .project-grid,
+    .skills-container {
+        gap: 2.5rem;
+        padding: 0 1rem;
+    }
+
+    .project-box,
+    .skill-category {
+        margin-bottom: 0.8rem;
+    }
 } 
