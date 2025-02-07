@@ -188,16 +188,19 @@ h2:hover::after {
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     border: 1px solid rgba(255,255,255,0.05);
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     position: relative;
     display: flex;
     flex-direction: column;
     min-height: 250px;
     max-width: 100%;
+    will-change: transform;
 }
 
 .project-box:hover {
     transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
     box-shadow: 0 6px 25px rgba(255,142,83,0.2);
     border-color: rgba(255,142,83,0.3);
 }
@@ -256,8 +259,10 @@ h2:hover::after {
     background: rgba(255, 183, 77, 0.15);
     color: #FFB74D;
     border: 1px solid rgba(255, 183, 77, 0.2);
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     white-space: nowrap;
+    will-change: transform;
 }
 
 body.light .skill-tag {
@@ -267,8 +272,9 @@ body.light .skill-tag {
 }
 
 .skill-tag:hover {
-    background: rgba(255, 183, 77, 0.25);
+    -webkit-transform: translateY(-2px);
     transform: translateY(-2px);
+    background: rgba(255, 183, 77, 0.25);
 }
 
 body.light .skill-tag:hover {
@@ -380,13 +386,16 @@ body.light .skill-tag:hover {
 .skill-category {
     background: var(--card-background);
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     border: 1px solid rgba(255,255,255,0.1);
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    will-change: transform;
 }
 
 .skill-category:hover {
+    -webkit-transform: translateY(-5px);
     transform: translateY(-5px);
     box-shadow: 0 6px 25px rgba(255,142,83,0.2);
     border-color: rgba(255,142,83,0.3);
@@ -507,12 +516,15 @@ body.light .skill-tag:hover {
     padding: 1rem 2rem;
     border-radius: 12px;
     border: 1px solid rgba(255,255,255,0.1);
+    -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    will-change: transform;
 }
 
 .social-links a:hover {
     color: var(--secondary-color);
     background: rgba(255,255,255,0.05);
+    -webkit-transform: translateY(-3px);
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(255,142,83,0.2);
 }
@@ -549,8 +561,16 @@ body.light .social-links a:hover {
 footer {
     text-align: center;
     padding: 2rem;
-    background-color: #151515;
+    background-color: var(--card-background);
     color: var(--text-color);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+body.light footer {
+    background-color: var(--card-background);
+    color: var(--text-color);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* Theme Switcher */
@@ -764,4 +784,12 @@ body.light .header {
 
 .nav-links a:hover::after {
     width: 100%;
+}
+
+/* Ensure all transitions are properly prefixed and defined */
+* {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 } 

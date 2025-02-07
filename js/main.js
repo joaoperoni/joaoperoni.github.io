@@ -79,23 +79,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const icon = themeToggle.querySelector('i');
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
     
-    // Check for saved theme preference or use system preference
-    const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
-    
     // Function to update theme
     const updateTheme = (theme) => {
         document.body.className = theme;
-        localStorage.setItem('theme', theme);
-        
-        // Update icon
+        // Update icon based on theme
         if (theme === 'light') {
-            icon.className = 'fas fa-moon';
+            icon.className = 'fas fa-moon'; // Moon icon for light mode (switch to dark)
         } else {
-            icon.className = 'fas fa-sun';
+            icon.className = 'fas fa-sun';  // Sun icon for dark mode (switch to light)
         }
+        localStorage.setItem('theme', theme);
     };
     
     // Set initial theme
+    const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
     updateTheme(currentTheme);
     
     // Theme toggle click handler
