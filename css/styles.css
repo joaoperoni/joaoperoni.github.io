@@ -1384,6 +1384,11 @@ section {
     margin: 1.4rem 0 1.2rem;
 }
 
+.quote-attribution {
+    text-align: right;
+    margin-top: auto;
+}
+
 .quote-author {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.85rem;
@@ -1391,7 +1396,21 @@ section {
     letter-spacing: 0.04em;
     color: var(--text-color-secondary);
     margin: 0;
-    text-align: right;
+}
+
+.quote-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: var(--text-color-secondary);
+    opacity: 0.88;
+    margin: 0.35rem 0 0;
+}
+
+body.light .quote-role {
+    color: #64748B;
 }
 
 .quote-card.is-center {
@@ -1466,6 +1485,44 @@ section {
     outline-offset: 2px;
 }
 
+.quotes-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    padding: 0;
+}
+
+.quotes-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.25);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.quotes-dot.is-active {
+    background: var(--primary-color);
+    transform: scale(1.2);
+}
+
+body.light .quotes-dot {
+    background: rgba(30, 41, 59, 0.2);
+}
+
+body.light .quotes-dot.is-active {
+    background: #2563EB;
+}
+
+.quotes-nav,
+.quotes-dot {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
 body.light .quote-card {
     background: #FFFFFF;
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -1515,48 +1572,96 @@ body.light .quotes-nav:hover {
     }
 
     .quotes {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
         padding-bottom: 2.5rem;
+        overflow: hidden;
     }
 
     .quotes-wrap {
-        grid-template-columns: 36px 1fr 36px;
+        grid-template-columns: 40px 1fr 40px;
+        gap: 0;
+        overflow: hidden;
+        touch-action: pan-y;
     }
 
     .quotes-stage {
-        height: 320px;
+        height: auto;
+        min-height: 240px;
+        overflow: hidden;
+        touch-action: pan-y;
     }
 
     .quote-card {
-        width: min(94%, 420px);
-        min-height: 230px;
-        padding: 2rem 1.4rem 1.4rem;
+        width: 72%;
+        min-height: 0;
+        padding: 1.75rem 1.25rem 1.25rem;
     }
 
-    .quote-card.is-left,
-    .quote-card.is-right {
-        opacity: 0;
-        pointer-events: none;
+    .quote-card.is-center {
+        width: 76%;
+        z-index: 3;
+    }
+
+    .quote-card.is-left {
+        transform: translate(calc(-50% - 42vw), -50%) scale(0.86);
+        opacity: 0.45;
+        pointer-events: auto;
         filter: none;
+        z-index: 2;
+    }
+
+    .quote-card.is-right {
+        transform: translate(calc(-50% + 42vw), -50%) scale(0.86);
+        opacity: 0.45;
+        pointer-events: auto;
+        filter: none;
+        z-index: 2;
+    }
+
+    .quote-card.is-hidden {
+        pointer-events: none;
     }
 
     .quote-text {
-        font-size: 0.98rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 
     .quotes-nav {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
+        position: relative;
+        z-index: 5;
+        flex-shrink: 0;
+    }
+
+    .quotes-dots {
+        margin-top: 1rem;
+    }
+
+    .quotes-dot {
+        width: 10px;
+        height: 10px;
+        padding: 6px;
+        background-clip: content-box;
     }
 }
 
 @media (max-width: 380px) {
-    .quotes-stage {
-        height: 340px;
+    .quote-card {
+        width: 74%;
+    }
+
+    .quote-card.is-left {
+        transform: translate(calc(-50% - 44vw), -50%) scale(0.84);
+    }
+
+    .quote-card.is-right {
+        transform: translate(calc(-50% + 44vw), -50%) scale(0.84);
     }
 
     .quote-text {
-        font-size: 0.92rem;
+        font-size: 0.9rem;
     }
 } 

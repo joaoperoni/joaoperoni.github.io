@@ -149,18 +149,48 @@ document.addEventListener('DOMContentLoaded', () => {
 function initQuotesCarousel() {
     const root = document.querySelector('.quotes');
     const stage = document.querySelector('.quotes-stage');
-    if (!root || !stage) return;
+    const wrap = root.querySelector('.quotes-wrap');
+    if (!root || !stage || !wrap) return;
 
     const cards = Array.from(stage.querySelectorAll('.quote-card'));
     const prevBtn = root.querySelector('.quotes-prev');
     const nextBtn = root.querySelector('.quotes-next');
     const n = cards.length;
-    if (!n) return;
+    if (!n || !prevBtn || !nextBtn) return;
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     let index = 0;
     let timer = null;
     let paused = false;
+
+    const dotsHost = document.createElement('div');
+    dotsHost.className = 'quotes-dots';
+    dotsHost.setAttribute('role', 'tablist');
+    dotsHost.setAttribute('aria-label', 'Quote pagination');
+    const dots = cards.map((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'quotes-dot';
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', `Quote ${i + 1} of ${n}`);
+        dot.addEventListener('click', () => {
+            index = i;
+            positionCards();
+            start();
+        });
+        dotsHost.appendChild(dot);
+        return dot;
+    });
+    wrap.after(dotsHost);
+
+    const syncStageHeight = () => {
+        const center = cards[index];
+        if (!center) return;
+        requestAnimationFrame(() => {
+            stage.style.minHeight = `${Math.max(center.offsetHeight, 200)}px`;
+        });
+    };
 
     const positionCards = () => {
         cards.forEach((card, i) => {
@@ -176,6 +206,12 @@ function initQuotesCarousel() {
                 card.classList.add('is-hidden');
             }
         });
+        dots.forEach((dot, i) => {
+            const active = i === index;
+            dot.classList.toggle('is-active', active);
+            dot.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        syncStageHeight();
     };
 
     const stop = () => {
@@ -197,8 +233,14 @@ function initQuotesCarousel() {
         if (!paused) start();
     };
 
-    prevBtn.addEventListener('click', () => go(-1));
-    nextBtn.addEventListener('click', () => go(1));
+    prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        go(-1);
+    });
+    nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        go(1);
+    });
 
     cards.forEach((card, i) => {
         card.addEventListener('click', () => {
@@ -218,14 +260,17 @@ function initQuotesCarousel() {
         start();
     };
 
-    root.addEventListener('mouseenter', pause);
-    root.addEventListener('mouseleave', resume);
+    if (finePointer) {
+        root.addEventListener('mouseenter', pause);
+        root.addEventListener('mouseleave', resume);
+    }
+
     root.addEventListener('focusin', pause);
     root.addEventListener('focusout', (e) => {
         if (!root.contains(e.relatedTarget)) resume();
     });
 
-    root.addEventListener('keydown', (e) => {
+    stage.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
             go(-1);
@@ -236,16 +281,35 @@ function initQuotesCarousel() {
     });
 
     let touchStartX = 0;
-    stage.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].clientX;
-        pause();
+    let touchStartY = 0;
+    let touchTracking = false;
+
+    const onTouchStart = (e) => {
+        if (e.touches.length !== 1) return;
+        touchTracking = true;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    };
+
+    const onTouchEnd = (e) => {
+        if (!touchTracking) return;
+        touchTracking = false;
+        const t = e.changedTouches[0];
+        if (!t) return;
+        const dx = t.clientX - touchStartX;
+        const dy = t.clientY - touchStartY;
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 48) {
+            go(dx < 0 ? 1 : -1);
+        }
+    };
+
+    wrap.addEventListener('touchstart', onTouchStart, { passive: true });
+    wrap.addEventListener('touchend', onTouchEnd, { passive: true });
+    wrap.addEventListener('touchcancel', () => {
+        touchTracking = false;
     }, { passive: true });
 
-    stage.addEventListener('touchend', (e) => {
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
-        resume();
-    }, { passive: true });
+    window.addEventListener('resize', syncStageHeight, { passive: true });
 
     positionCards();
     start();
