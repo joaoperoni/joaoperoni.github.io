@@ -142,7 +142,114 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.observe(box);
         });
     }
+
+    initQuotesCarousel();
 });
+
+function initQuotesCarousel() {
+    const root = document.querySelector('.quotes');
+    const stage = document.querySelector('.quotes-stage');
+    if (!root || !stage) return;
+
+    const cards = Array.from(stage.querySelectorAll('.quote-card'));
+    const prevBtn = root.querySelector('.quotes-prev');
+    const nextBtn = root.querySelector('.quotes-next');
+    const n = cards.length;
+    if (!n) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let index = 0;
+    let timer = null;
+    let paused = false;
+
+    const positionCards = () => {
+        cards.forEach((card, i) => {
+            card.classList.remove('is-left', 'is-center', 'is-right', 'is-hidden');
+            const rel = (i - index + n) % n;
+            if (rel === 0) {
+                card.classList.add('is-center');
+            } else if (rel === 1) {
+                card.classList.add('is-right');
+            } else if (rel === n - 1) {
+                card.classList.add('is-left');
+            } else {
+                card.classList.add('is-hidden');
+            }
+        });
+    };
+
+    const stop = () => {
+        if (timer) {
+            clearInterval(timer);
+            timer = null;
+        }
+    };
+
+    const start = () => {
+        stop();
+        if (reducedMotion || paused || n < 2) return;
+        timer = setInterval(() => go(1), 6500);
+    };
+
+    const go = (dir) => {
+        index = (index + dir + n) % n;
+        positionCards();
+        if (!paused) start();
+    };
+
+    prevBtn.addEventListener('click', () => go(-1));
+    nextBtn.addEventListener('click', () => go(1));
+
+    cards.forEach((card, i) => {
+        card.addEventListener('click', () => {
+            const rel = (i - index + n) % n;
+            if (rel === 1) go(1);
+            else if (rel === n - 1) go(-1);
+        });
+    });
+
+    const pause = () => {
+        paused = true;
+        stop();
+    };
+
+    const resume = () => {
+        paused = false;
+        start();
+    };
+
+    root.addEventListener('mouseenter', pause);
+    root.addEventListener('mouseleave', resume);
+    root.addEventListener('focusin', pause);
+    root.addEventListener('focusout', (e) => {
+        if (!root.contains(e.relatedTarget)) resume();
+    });
+
+    root.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            go(-1);
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            go(1);
+        }
+    });
+
+    let touchStartX = 0;
+    stage.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+        pause();
+    }, { passive: true });
+
+    stage.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+        resume();
+    }, { passive: true });
+
+    positionCards();
+    start();
+}
 
 // Form submission handling
 const contactForm = document.getElementById('contact-form');

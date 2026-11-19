@@ -1294,4 +1294,269 @@ section {
     .skill-category {
         margin-bottom: 0.8rem;
     }
+}
+
+/* Quotes carousel — Five Guys-style review cards */
+.hero {
+    min-height: auto;
+    padding-top: 2.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.hero-content {
+    padding-top: 1.5rem;
+    padding-bottom: 0;
+}
+
+.quotes {
+    max-width: 1200px;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+}
+
+.quotes-kicker {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--text-color-secondary);
+    letter-spacing: 0.04em;
+    margin: 0 0 1.5rem;
+}
+
+.quotes-wrap {
+    display: grid;
+    grid-template-columns: 48px 1fr 48px;
+    align-items: center;
+    gap: 0.25rem;
+    outline: none;
+    overflow: visible;
+}
+
+.quotes-stage {
+    position: relative;
+    height: 300px;
+    perspective: 1400px;
+    overflow: visible;
+}
+
+.quote-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(420px, 62%);
+    min-height: 210px;
+    padding: 2.2rem 2rem 1.6rem;
+    background: var(--card-background);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform-origin: center center;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.45s ease,
+                filter 0.45s ease,
+                box-shadow 0.45s ease;
+    will-change: transform, opacity;
+}
+
+.quote-card::before {
+    content: '“';
+    position: absolute;
+    top: -0.15em;
+    left: 0.7rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 4.2rem;
+    line-height: 1;
+    color: var(--primary-color);
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.quote-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: var(--text-color);
+    margin: 1.4rem 0 1.2rem;
+}
+
+.quote-author {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-color-secondary);
+    margin: 0;
+    text-align: right;
+}
+
+.quote-card.is-center {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    z-index: 3;
+    filter: none;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.38);
+    pointer-events: auto;
+    cursor: default;
+}
+
+.quote-card.is-left {
+    transform: translate(calc(-50% - 260px), -50%) scale(0.82);
+    opacity: 0.5;
+    z-index: 2;
+    filter: blur(0.3px);
+    cursor: pointer;
+}
+
+.quote-card.is-right {
+    transform: translate(calc(-50% + 260px), -50%) scale(0.82);
+    opacity: 0.5;
+    z-index: 2;
+    filter: blur(0.3px);
+    cursor: pointer;
+}
+
+.quote-card.is-hidden {
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.quote-card.is-left:hover,
+.quote-card.is-right:hover {
+    opacity: 0.72;
+    filter: none;
+}
+
+.quotes-stage:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 8px;
+    border-radius: 16px;
+}
+
+.quotes-nav {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    z-index: 4;
+}
+
+.quotes-nav:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background: rgba(255, 107, 107, 0.1);
+    transform: translateY(-2px);
+}
+
+.quotes-nav:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+body.light .quote-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
+
+body.light .quote-card.is-center {
+    box-shadow: 0 14px 40px rgba(37, 99, 235, 0.16);
+}
+
+body.light .quote-text {
+    color: #1E293B;
+}
+
+body.light .quotes-nav {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #1E293B;
+}
+
+body.light .quotes-nav:hover {
+    color: #2563EB;
+    border-color: #2563EB;
+    background: rgba(37, 99, 235, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .quote-card {
+        transition: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .quote-card.is-left {
+        transform: translate(calc(-50% - 210px), -50%) scale(0.8);
+    }
+
+    .quote-card.is-right {
+        transform: translate(calc(-50% + 210px), -50%) scale(0.8);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto;
+        padding-top: 1.5rem;
+    }
+
+    .quotes {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .quotes-wrap {
+        grid-template-columns: 36px 1fr 36px;
+    }
+
+    .quotes-stage {
+        height: 320px;
+    }
+
+    .quote-card {
+        width: min(94%, 420px);
+        min-height: 230px;
+        padding: 2rem 1.4rem 1.4rem;
+    }
+
+    .quote-card.is-left,
+    .quote-card.is-right {
+        opacity: 0;
+        pointer-events: none;
+        filter: none;
+    }
+
+    .quote-text {
+        font-size: 0.98rem;
+    }
+
+    .quotes-nav {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 380px) {
+    .quotes-stage {
+        height: 340px;
+    }
+
+    .quote-text {
+        font-size: 0.92rem;
+    }
 } 
