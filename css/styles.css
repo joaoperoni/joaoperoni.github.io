@@ -1316,9 +1316,9 @@ section {
 
 .quotes-kicker {
     text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
+    font-family: 'Space Grotesk', sans-serif;
     font-size: 1.05rem;
+    font-weight: 500;
     color: var(--text-color-secondary);
     letter-spacing: 0.04em;
     margin: 0 0 1.5rem;
